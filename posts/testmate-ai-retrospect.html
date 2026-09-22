@@ -98,19 +98,19 @@
         </header>
 
         <article class="post-body">
-            <h2>AI 生成的代码，我能讲清楚吗？</h2>
+            <h2>在AI时代，使用Vibe Coding的代码，对于HR怎么看？</h2>
             <p class="post-meta">2026-09-22 · CodeCat</p>
 
-            <p>说实话，TestMate AI 这个项目大部分代码是 AI 辅助写的。</p>
-            <p>但有个问题——面试官不在乎谁敲的键盘，他想知道你懂不懂这些代码为什么这么写。所以我写了这篇博客，逼自己把每个决策讲清楚。</p>
+            <p>说实话，我并不清楚HR的真实看法，但对我个人而言，我认为在AI时代我们比起Coding能力，更应该注重Debug能力。</p>
+            <p>老板不在乎谁敲的键盘，只在乎你懂不懂这些代码。所以我写了这篇博客，比起给别人看，更多的是让自己接受Vibe Coding</p>
 
-            <h3>项目是什么</h3>
-            <p>一句话：输入一段需求文字，AI 帮你生成功能测试用例，还能导出 Excel。</p>
-            <p>比如你输入"用户登录功能，支持账号密码登录"，它会输出 10 条测试用例——正常登录、密码错误、账号为空、SQL 注入……覆盖正常和异常场景。</p>
+            <h3>我用AI写的项目是什么</h3>
+            <p>TestMateAI，这个项目是我和AI共同完成的，是用来生成测试用例的（PS：手写测试用例太麻烦，豆包生成的有时候比较抽象不好复制。）</p>
+            <p>所以我写好PRD、提示词和系统设计，然后让AI在我搭建好的框架下填充。最后效果就是：输入一段需求文字，AI 帮你生成功能测试用例，还能导出 Excel。</p><p>比如你输入"用户登录功能，支持账号密码登录"，它会输出 10 条测试用例——正常登录、密码错误、账号为空、SQL 注入……覆盖正常和异常场景。</p>
 
             <h3>技术栈</h3>
             <table>
-                <tr><th>技术</th><th>干嘛用的</th></tr>
+                <tr><th>技术</th><th>作用</th></tr>
                 <tr><td>FastAPI</td><td>后端框架，选它是因为快、自带 API 文档</td></tr>
                 <tr><td>LangChain + DeepSeek</td><td>AI 调用层，DeepSeek 便宜效果好</td></tr>
                 <tr><td>Vue 3 + ElementPlus</td><td>前端，表格组件开箱即用</td></tr>
@@ -183,7 +183,7 @@
             <h3>1. DeepSeek 怎么接的</h3>
             <p>核心就改了一个地方——<code>base_url</code>：</p>
             <pre>llm = ChatOpenAI(
-    api_key=DEEPSEEK_API_KEY,
+    api_key=DEEPSEEK_API_KEY, # 其实还有这里（换上自己的KEY别上传<可以用.ignore 忽略本地写KEY的文件>）
     base_url="https://api.deepseek.com",  # 就改这里
     model="deepseek-chat",
     temperature=0.3
@@ -246,14 +246,14 @@ for attempt in range(max_retries):
             </ul>
 
             <h3>所以 AI 写了代码，我学到了什么？</h3>
-            <p>老实说大部分代码确实不是我一个字一个字敲的。但写这篇博客的时候，我得回答这些问题：</p>
+            <p>老实说大部分代码确实不是我一个字一个字敲的。但写这篇博客的时候，我完全可以靠自己回答这些问题：</p>
             <ul>
                 <li>为什么用 DeepSeek 不用 OpenAI？—— 便宜，API 兼容</li>
                 <li>为什么重试 2 次不是 3 次？—— 够了，再多就是浪费时间</li>
                 <li>为什么用 JWT 不用 Session？—— 前后端分离，无状态方便</li>
                 <li>为什么用内存流不用临时文件？—— 云上没那么多磁盘给你玩</li>
             </ul>
-            <p>能回答这些，代码才算"我的"。</p>
+            <p>或者其他项目的问题，我觉得在这个时代，我们应该是利用AI加速自己成长，简单重复的任务直接AI接管，我们可以学更多东西和技术。</p>
 
         </article>
 
