@@ -1,0 +1,194 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paper color palette — no gradients, no glass */
+    --bg: #faf8f5;          /* warm paper */
+    --bg-alt: #f3efe7;      /* slightly darker paper */
+    --text: #2c2a26;        /* dark charcoal */
+    --text-muted: #6b655b;  /* muted brown-gray */
+    --accent: #8b5a2b;      /* warm brown for links */
+    --border: #d9d3c5;      /* subtle border */
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: Georgia, 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Language Switcher */
+.lang-switch {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 0.25rem;
+    z-index: 100;
+}
+
+.lang-switch button {
+    font-family: Georgia, serif;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.lang-switch button:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+}
+
+.lang-switch button.active {
+    color: var(--text);
+    border-color: var(--text);
+}
+
+/* Layout */
+.container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+}
+
+/* Header */
+.site-header {
+    margin-bottom: 4rem;
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-style: italic;
+}
+
+/* Sections */
+section {
+    margin-bottom: 3.5rem;
+}
+
+section h2 {
+    font-size: 1.3rem;
+    font-weight: normal;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.01em;
+}
+
+section p {
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+/* Projects */
+.project {
+    margin-bottom: 2rem;
+}
+
+.project h3 {
+    font-size: 1.15rem;
+    font-weight: normal;
+    margin-bottom: 0.4rem;
+}
+
+.project-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.tags span {
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.5rem;
+}
+
+/* Blog */
+.coming-soon {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Contact */
+.contact ul {
+    list-style: none;
+}
+
+.contact li {
+    margin-bottom: 0.5rem;
+}
+
+.contact a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.2s;
+}
+
+.contact a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.site-footer p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 5rem 1.25rem 3rem;
+    }
+
+    .name {
+        font-size: 2rem;
+    }
+
+    .lang-switch {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .lang-switch button {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.45rem;
+    }
+}

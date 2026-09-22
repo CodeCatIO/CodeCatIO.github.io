@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCat — Personal Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <nav class="lang-switch">
+        <button data-lang="zh" class="active">中文</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="jp">日本語</button>
+        <button data-lang="kr">한국어</button>
+    </nav>
+
+    <main class="container">
+        <!-- Header -->
+        <header class="site-header">
+            <h1 class="name">CodeCat</h1>
+            <p class="tagline" data-i18n="tagline">一个在 AI 与工程之间寻找平衡的开发者</p>
+        </header>
+
+        <!-- About -->
+        <section class="about">
+            <h2 data-i18n="about_title">关于我</h2>
+            <p>
+                <span data-i18n="about_school">南京传媒学院</span>
+                ·
+                <span data-i18n="about_major">计算机科学与技术</span>
+            </p>
+            <p data-i18n="about_desc">
+                专注于 AI 应用开发与后端工程，热爱用代码解决真实问题。
+                目前正在开发 TestMate AI —— 一个基于 LangChain 的智能测试用例生成平台。
+            </p>
+        </section>
+
+        <!-- Projects -->
+        <section class="projects">
+            <h2 data-i18n="projects_title">项目</h2>
+
+            <article class="project">
+                <h3>TestMate AI</h3>
+                <p class="project-desc" data-i18n="testmate_desc">
+                    基于 LangChain + ChromaDB 的智能测试用例生成平台。
+                    支持自然语言生成测试用例、RAG 知识检索、Agent 自主执行。
+                </p>
+                <div class="tags">
+                    <span>Python</span>
+                    <span>FastAPI</span>
+                    <span>LangChain</span>
+                    <span>ChromaDB</span>
+                    <span>Playwright</span>
+                </div>
+            </article>
+
+            <article class="project">
+                <h3 data-i18n="unity_title">Unity 3D 游戏 Demo</h3>
+                <p class="project-desc" data-i18n="unity_desc">
+                    包含背包系统、AI 寻路、战斗系统与动作系统的 3D 游戏原型。
+                </p>
+                <div class="tags">
+                    <span>C#</span>
+                    <span>Unity</span>
+                </div>
+            </article>
+        </section>
+
+        <!-- Blog -->
+        <section class="blog">
+            <h2 data-i18n="blog_title">博客</h2>
+            <p class="coming-soon" data-i18n="blog_soon">文章正在准备中…</p>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact">
+            <h2 data-i18n="contact_title">联系方式</h2>
+            <ul>
+                <li>GitHub: <a href="https://github.com/CodePigerr" target="_blank" rel="noopener">@CodePigerr</a></li>
+                <li data-i18n="contact_email">邮箱: Songwj811018@gmail.com</li>
+            </ul>
+        </section>
+
+        <footer class="site-footer">
+            <p>© 2026 CodeCat. Built with plain HTML &amp; CSS.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
