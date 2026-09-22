@@ -18,6 +18,11 @@
     <main class="container">
         <!-- Header -->
         <header class="site-header">
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Blog</a>
+                <a href="https://github.com/CodePigerr" target="_blank" rel="noopener">GitHub</a>
+            </nav>
             <h1 class="name">CodeCat</h1>
             <p class="tagline" data-i18n="tagline">一个在 AI 与工程之间寻找平衡的开发者</p>
         </header>
@@ -70,7 +75,13 @@
         <!-- Blog -->
         <section class="blog">
             <h2 data-i18n="blog_title">博客</h2>
-            <p class="coming-soon" data-i18n="blog_soon">文章正在准备中…</p>
+            <div class="post-list">
+                <article class="post-item">
+                    <h3><a href="posts/testmate-ai-retrospect.html">AI 生成的代码，我能讲清楚吗？——TestMate AI 项目复盘</a></h3>
+                    <p class="post-date">2026-09-22</p>
+                    <p class="post-excerpt">大部分代码是 AI 辅助写的，但写这篇博客的过程逼着我回答：为什么用 DeepSeek？为什么重试 2 次？为什么用 JWT？能回答这些问题，才算"拥有"这个项目。</p>
+                </article>
+            </div>
         </section>
 
         <!-- Contact -->
