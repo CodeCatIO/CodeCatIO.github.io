@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 生成的代码，我能讲清楚吗？ — CodeCat</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Blog post specific styles */
+        .post-meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+        .post-body h3 {
+            font-size: 1.15rem;
+            font-weight: normal;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .post-body p {
+            margin-bottom: 1rem;
+        }
+        .post-body pre {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            padding: 1rem 1.25rem;
+            overflow-x: auto;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+        }
+        .post-body code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            background: var(--bg-alt);
+            padding: 0.1rem 0.35rem;
+        }
+        .post-body ul, .post-body ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        .post-body li {
+            margin-bottom: 0.4rem;
+        }
+        .post-body blockquote {
+            border-left: 3px solid var(--border);
+            padding-left: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin: 1rem 0;
+        }
+        .post-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.9rem;
+        }
+        .post-body th, .post-body td {
+            border: 1px solid var(--border);
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+        }
+        .post-body th {
+            background: var(--bg-alt);
+            font-weight: normal;
+        }
+        .back-link {
+            margin-top: 3rem;
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <nav class="lang-switch">
+        <button data-lang="zh" class="active">中文</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="jp">日本語</button>
+        <button data-lang="kr">한국어</button>
+    </nav>
+
+    <main class="container">
+        <header class="site-header">
+            <h1 class="name"><a href="../index.html" style="color:inherit; text-decoration:none;">CodeCat</a></h1>
+            <p class="tagline">笔记与思考</p>
+        </header>
+
+        <article class="post-body">
+            <h2>AI 生成的代码，我能讲清楚吗？——TestMate AI 项目复盘</h2>
+            <p class="post-meta">2026-09-22 · CodeCat</p>
+
+            <p>这是一个很真实的问题。我的项目 TestMate AI 大部分代码是 AI 辅助写的，但我需要证明：我理解每一行代码背后的决策。</p>
+            <p>这篇博客就是证明。</p>
+
+            <h3>这个项目是什么</h3>
+            <p>TestMate AI 是一个智能测试用例生成工具。测试工程师输入一段功能需求文字，AI 自动生成标准化的功能测试用例，可以导出 Excel 文件。</p>
+            <p>一句话定位：输入需求文字，一键生成功能测试用例。</p>
+
+            <h3>技术栈</h3>
+            <table>
+                <tr><th>技术</th><th>用途</th></tr>
+                <tr><td>Python + FastAPI</td><td>后端框架，异步高性能，自动生成 API 文档</td></tr>
+                <tr><td>LangChain + DeepSeek</td><td>AI 调用链，LangChain 封装 DeepSeek API</td></tr>
+                <tr><td>Vue 3 + ElementPlus</td><td>前端框架 + UI 组件库</td></tr>
+                <tr><td>SQLAlchemy + MySQL</td><td>ORM + 生产数据库（开发用 SQLite）</td></tr>
+                <tr><td>openpyxl</td><td>Excel 文件生成</td></tr>
+            </table>
+
+            <h3>架构</h3>
+            <pre>┌─────────────────────────────────────────────┐
+│        前端 (Vue 3 + ElementPlus)            │
+│  Home → Generate → Result → History → Detail │
+└──────────────────┬──────────────────────────┘
+                   │ HTTP
+┌──────────────────┴──────────────────────────┐
+│        后端 (FastAPI)                        │
+│                                              │
+│  api/          ← 路由层                      │
+│  ├ auth.py     ← 注册/登录/JWT验证           │
+│  ├ generate.py ← 调AI生成用例+重试机制       │
+│  ├ export.py   ← openpyxl生成Excel           │
+│  └ history.py  ← 历史记录CRUD+Excel导出      │
+│                                              │
+│  services/     ← 业务逻辑                    │
+│  └ ai_service.py ← LangChain + DeepSeek     │
+│                                              │
+│  models/       ← 数据库模型                  │
+│  ├ user.py     ← 用户表                     │
+│  └ case_record.py ← 用例记录表              │
+│                                              │
+│  utils/        ← 工具                        │
+│  └ auth.py     ← bcrypt加密 + JWT生成/验证   │
+└──────────────────────────────────────────────┘</pre>
+
+            <h3>我学到的 3 件事</h3>
+
+            <h4>1. LangChain 的 ChatOpenAI 可以指向 DeepSeek</h4>
+            <p>核心就这几行代码：</p>
+            <pre>llm = ChatOpenAI(
+    api_key=DEEPSEEK_API_KEY,
+    base_url=DEEPSEEK_BASE_URL,  # 指向 DeepSeek 而非 OpenAI
+    model="deepseek-chat",
+    temperature=0.3
+)</pre>
+            <p>原理很简单：DeepSeek 兼容 OpenAI API 格式，所以 LangChain 的 <code>ChatOpenAI</code> 类不需要改任何代码，只需把 <code>base_url</code> 指向 DeepSeek 的地址。</p>
+            <blockquote>这教会我一个概念：接口兼容性（Interface Compatibility）。一个设计良好的接口层，可以让你在不改业务代码的情况下切换底层实现。</blockquote>
+
+            <h4>2. AI 返回不稳定？必须有重试机制</h4>
+            <p>AI 不保证 100% 返回正确格式。有时候它会返回一段带说明文字的 JSON，有时候直接超时。我的解决方案：</p>
+            <pre>max_retries = 2
+for attempt in range(max_retries):
+    try:
+        cases = generate_cases(request.requirement)
+        return {"code": 200, "data": {"total": len(cases), "cases": cases}}
+    except json.JSONDecodeError:
+        # AI returned non-JSON
+        if attempt < max_retries - 1:
+            time.sleep(2)
+            continue
+        return {"code": 500, "message": "AI返回格式错误"}
+    except (ConnectionError, TimeoutError, OSError):
+        if attempt < max_retries - 1:
+            time.sleep(2)
+            continue
+        return {"code": 503, "message": "AI服务不可用"}</pre>
+            <p>这个重试机制的设计思路：</p>
+            <ul>
+                <li><strong>JSON 解析失败</strong> → AI 返回了内容但格式不对 → 重试一次，可能这次就好了</li>
+                <li><strong>连接/超时错误</strong> → 网络问题或 AI 服务挂了 → 重试一次，不行就告诉用户"服务不可用"</li>
+                <li><strong>状态码区分</strong> → 500 是 AI 的锅（格式错误），503 是基础设施的锅（服务不可用）</li>
+            </ul>
+            <p>这是生产级思维——任何依赖外部服务的系统，都必须有兜底方案（fallback）。</p>
+
+            <h4>3. JWT 鉴权：bcrypt + JWT 的组合</h4>
+            <p>用户密码不能明文存储。流程是这样的：</p>
+            <pre># 注册：密码 → 哈希
+hashed = bcrypt.hashpw(
+    password.encode('utf-8'),    # 字符串转字节
+    bcrypt.gensalt()              # 随机盐值
+).decode('utf-8')
+
+# 登录：验证密码
+bcrypt.checkpw(
+    plain_password.encode('utf-8'),
+    hashed_password.encode('utf-8')
+)
+
+# 登录成功后发 JWT Token
+payload = {
+    'sub': str(user_id),  # 用户ID
+    'exp': expires         # 7天后过期
+}
+token = jwt.encode(payload, JWT_SECRET_KEY, algorithm="HS256")</pre>
+            <blockquote>bcrypt 就像一个单向绞肉机——你把肉放进去变成肉馅，但不可能从肉馅还原出原来的肉。这就是不可逆哈希（irreversible hash）。</blockquote>
+            <p>JWT 的作用是让用户登录后拿到一个"通行证"，之后每次请求带着这个通行证，后端 decode 一下就知道你是谁，不用每次都查数据库验证密码。</p>
+
+            <h3>数据隔离：用户 A 看不到用户 B 的数据</h3>
+            <p>历史记录查询时，始终带上 <code>user_id</code> 过滤：</p>
+            <pre>records = db.query(CaseRecord)
+    .filter(CaseRecord.user_id == current_user.id)
+    .order_by(CaseRecord.id.desc())
+    .offset(offset)
+    .limit(size)
+    .all()</pre>
+            <p>如果有人试图访问别人的记录？直接返回 403：</p>
+            <pre>if record.user_id != current_user.id:
+    raise HTTPException(403, "无权访问该记录")</pre>
+
+            <h3>Excel 导出：内存中生成文件流</h3>
+            <p>不用临时文件，直接在内存里生成 Excel，用 <code>StreamingResponse</code> 返回：</p>
+            <pre>output = io.BytesIO()
+wb.save(output)
+output.seek(0)
+
+return StreamingResponse(
+    output,
+    media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(filename)}"}
+)</pre>
+            <p>中文文件名有个坑：HTTP 头只允许 ASCII 字符，中文文件名必须用 RFC 5987 编码（<code>filename*=UTF-8''</code>），否则浏览器下载的文件名会乱码。</p>
+
+            <h3>部署</h3>
+            <ul>
+                <li><strong>后端</strong>：部署在 Render，用 MySQL 做生产数据库</li>
+                <li><strong>前端</strong>：部署在 Vercel，自动构建 Vue 3</li>
+                <li><strong>CORS</strong>：FastAPI 配置了 Vercel 域名的跨域允许</li>
+                <li><strong>环境变量</strong>：DeepSeek API Key、JWT 密钥、数据库 URL 都通过环境变量读取，不硬编码</li>
+            </ul>
+
+            <h3>AI 帮我写了代码，但我学到了什么</h3>
+            <p>诚实地说：大部分代码是 AI 辅助生成的。但写这篇博客的过程，逼着我回答了这些问题：</p>
+            <ul>
+                <li>为什么用 DeepSeek 而不是 OpenAI？（成本，兼容性）</li>
+                <li>为什么重试 2 次而不是 3 次？（平衡延迟和成功率）</li>
+                <li>为什么用 JWT 而不是 Session？（无状态，适合前后端分离）</li>
+                <li>为什么用内存流而不是临时文件？（避免磁盘 IO，更适合云部署）</li>
+            </ul>
+            <p>能回答这些问题，才算"拥有"这个项目。VibeCoding 时代，<strong>能讲清楚代码的人</strong>比能写代码的人更有价值。</p>
+
+        </article>
+
+        <a href="../blog.html" class="back-link">← 返回博客列表</a>
+
+        <footer class="site-footer">
+            <p>© 2026 CodeCat. <a href="../index.html" style="color:var(--text-muted);">← Home</a></p>
+        </footer>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>
