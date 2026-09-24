@@ -22,41 +22,67 @@
         <button data-lang="kr">한국어</button>
     </nav>
 
-    <main class="container">
-        <header class="site-header">
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="blog.html">Blog</a>
-                <a href="https://github.com/CodePigerr" target="_blank" rel="noopener">GitHub</a>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="avatar">CC</div>
+            <div class="site-name"><a href="index.html">CodeCat</a></div>
+            <div class="social">
+                <a href="blog.html" title="RSS">RSS</a>
+                <a href="mailto:Songwj811018@gmail.com" title="Email">@</a>
+                <a href="https://github.com/CodeCatIO" target="_blank" rel="noopener" title="GitHub">GH</a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">首页</a>
+                <a href="blog.html" class="active">博客</a>
+                <a href="about.html">关于</a>
+                <a href="https://github.com/CodeCatIO" target="_blank" rel="noopener">GitHub</a>
             </nav>
-            <h1 class="name"><a href="index.html" style="color:inherit; text-decoration:none;">CodeCat</a></h1>
-            <p class="tagline" data-i18n="blog_tagline">笔记与思考</p>
-        </header>
+        </aside>
 
-        <section>
-            <h2 data-i18n="blog_title">博客</h2>
+        <!-- Content -->
+        <main class="content">
+            <div class="content-header">
+                <h2>全部文章</h2>
+            </div>
+
+            <!-- Tag cloud -->
+            <div class="tag-cloud">
+                <a class="tag-pill" href="#">FastAPI</a>
+                <a class="tag-pill" href="#">LangChain</a>
+                <a class="tag-pill" href="#">DeepSeek</a>
+                <a class="tag-pill" href="#">JWT</a>
+                <a class="tag-pill" href="#">Vue 3</a>
+                <a class="tag-pill" href="#">Vibe Coding</a>
+                <a class="tag-pill" href="#">Python</a>
+                <a class="tag-pill" href="#">测试用例</a>
+            </div>
 
             <div class="post-list">
-                <article class="post-item">
-                    <h3><a href="posts/testmate-ai-retrospect.html">在AI时代，使用Vibe Coding的代码，对于HR怎么看？</a></h3>
-                    <p class="post-date">2026-09-22</p>
-                    <p class="post-excerpt">说实话，我并不清楚HR的真实看法，但对我个人而言，在AI时代比起Coding能力，更应该注重Debug能力。</p>
-                    <div class="tags">
-                        <span>FastAPI</span>
-                        <span>LangChain</span>
-                        <span>DeepSeek</span>
-                        <span>JWT</span>
-                        <span>Vue 3</span>
+                <article class="post-card">
+                    <div class="post-thumb ai-badge">
+                        <span class="thumb-label">VIBE<br>CODING</span>
+                    </div>
+                    <div class="post-card-body">
+                        <h3><a href="posts/testmate-ai-retrospect.html">在AI时代，使用Vibe Coding的代码，HR怎么看？</a></h3>
+                        <div class="post-card-meta">2026-09-22 · Vibe Coding</div>
+                        <p class="post-card-excerpt">说实话，我并不清楚HR的真实看法，但对我个人而言，在AI时代比起Coding能力，更应该注重Debug能力。</p>
+                        <div class="tag-list">
+                            <a class="tag-pill" href="#">FastAPI</a>
+                            <a class="tag-pill" href="#">LangChain</a>
+                            <a class="tag-pill" href="#">DeepSeek</a>
+                            <a class="tag-pill" href="#">JWT</a>
+                            <a class="tag-pill" href="#">Vue 3</a>
+                        </div>
                     </div>
                 </article>
             </div>
-        </section>
 
-        <footer class="site-footer">
-            <p>© 2026 CodeCat. <a href="index.html" style="color:var(--text-muted);">← Home</a></p>
-        </footer>
-    </main>
+            <footer class="site-footer">
+                <p>© 2026 CodeCat. Built with plain HTML &amp; CSS.</p>
+            </footer>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
