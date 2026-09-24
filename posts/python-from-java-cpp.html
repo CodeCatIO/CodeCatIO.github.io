@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>从Java和C++过来，我的Python基础笔记 — CodeCat</title>
+    <title>从C++入门，系统学习Java后，到习惯性的使用Python — CodeCat</title>
     <meta name="description" content="一个Java/C++背景的开发者，系统学了一遍Python基础，记录一些之前没注意到的点。">
     <meta name="keywords" content="Python, Python3, Java, C++, 学习笔记, 编程语言对比">
     <meta name="author" content="CodeCat">
@@ -31,15 +31,15 @@
 
     <main class="post-detail">
         <article class="post-body">
-            <h2>从Java和C++过来，我的Python基础笔记</h2>
+            <h2>从C++入门，系统学习Java后，到习惯性的使用Python</h2>
             <p class="post-meta">2026-09-23 · CodeCat</p>
 
             <p>平时用 Python 写东西也不少了。但一直没正经坐下来学一遍基础。很多地方属于"能跑就行"的状态，遇到报错就搜一下，搜完就忘。</p>
-            <p>今天花了一天时间过了一遍。不记点什么的话明天就忘光了，所以写下来。</p>
+            <p>今天花了一天时间过了一遍Python的基础和Python3的新增特性。突然想更一下博客，就写了这篇。</p>
 
             <h3>变量类型这事</h3>
             <p>Java 里写 <code>int x = 10</code>，编译器知道 x 是整数。Python 里直接 <code>x = 10</code>，解释器运行的时候才知道 x 是整数。</p>
-            <p>之前一直没注意：同一个变量名可以指向不同类型的对象。<code>x = 10</code> 之后 <code>x = "hello"</code> 完全没问题。因为变量名只是个标签，贴在对象上。标签本身没类型，对象才有类型。(The variable name is just a label. The object has a type, the label doesn't.)</p>
+            <p>之前一直没注意：同一个变量名可以指向不同类型的对象。<code>x = 10</code> 之后 <code>x = "hello"</code> 完全没问题。因为变量名只是个标签，贴在对象上。标签本身没类型，对象才有类型。</p>
             <p>这东西平时写代码不会出问题。但 debug 的时候如果你不知道这个，看到变量类型突然变了会一头雾水。</p>
             <p>类型提示是 Python 3.5 加的。写法和 Java 很像：</p>
             <pre>def greet(name: str) -> str:
@@ -54,12 +54,12 @@ nums[1:4]    # [1, 2, 3] 左闭右开
 nums[:3]     # [0, 1, 2]
 nums[-2:]   # [4, 5] 倒着数
 nums[::-1]  # [5, 4, 3, 2, 1, 0] 反转</pre>
-            <p>Java 反转列表得 <code>Collections.reverse()</code>。Python 一个 <code>[::-1]</code> 完事。第一次看到的时候愣了一下，这也行？</p>
-            <p>负数索引也是。<code>nums[-1]</code> 取最后一个元素。Java 里你得写 <code>nums.get(nums.size() - 1)</code>。对比下来 Python 确实顺手。</p>
+            <p>Java 反转列表得 <code>Collections.reverse()</code>。Python 一个 <code>[::-1]</code> 完事。很方便</p>
+            <p>负数索引也是。<code>nums[-1]</code> 取最后一个元素。Java 里写 <code>nums.get(nums.size() - 1)</code>。对比下来 Python 确实顺手，所以平时喜欢用Python确实没问题。</p>
 
             <h3>字典比 HashMap 好用</h3>
             <pre>person = {"name": "Cat", "age": 22}
-person["school"] = "南京传媒学院"
+person["school"] = "学校"
 
 for key, value in person.items():
     print(f"{key}: {value}")</pre>
@@ -67,7 +67,7 @@ for key, value in person.items():
             <p>f-string 也舒服。<code>f"Hello, {name}!"</code> 比 Java 的 <code>String.format("Hello, %s!", name)</code> 好读多了。以前一直用 <code>%s</code> 的方式格式化，学了 f-string 就不想回去了。</p>
 
             <h3>函数可以传来传去</h3>
-            <p>Python 里函数是一等公民。可以当参数传，可以当返回值，可以赋值给变量。</p>
+            <p>在Python里，函数太自由了：可以当参数传，可以当返回值，可以赋值给变量。</p>
             <pre>def apply(func, x):
     return func(x)
 
@@ -76,7 +76,7 @@ apply(str.upper, "a") # 'A'</pre>
             <p>Java 要这么干得用函数式接口加 Lambda。C++ 得用函数指针或者 <code>std::function</code>。Python 直接传函数名就行。</p>
             <p>Lambda 也简洁：</p>
             <pre>nums.sort(key=lambda x: -x)  # 降序</pre>
-            <p>不过 Python 的 lambda 只能写一行表达式，不能写多行。想写复杂逻辑还是老老实实定义函数。</p>
+            <p>不过 Python 的 lambda 只能写一行表达式，不能写多行。想写复杂逻辑还是自己慢慢定义函数。</p>
 
             <h3>Python3 加的那些东西</h3>
             <p>之前用 Python 一直是"够用就行"，很多 3.x 加的特性压根没用过。今天过了一遍才发现，有些东西确实好用。</p>
@@ -85,9 +85,9 @@ apply(str.upper, "a") # 'A'</pre>
             <p>赋值加判断一行搞定：</p>
             <pre>while (line := input()) != "quit":
     print(line)</pre>
-            <p>以前要写三行：先赋值，再判断，循环体里再赋值。现在一行搞定。有点像 C 语言的 <code>while ((c = getchar()) != EOF)</code>，Python 3.8 才支持。</p>
+            <p>以前要写三行：先赋值，再判断，循环体里再赋值。现在一行搞定。有点像 C 语言的 <code>while ((c = getchar()) != EOF)</code>，虽然说Python 3.8 才支持。。。</p>
 
-            <p><strong>dataclass</strong>（3.7 加的）</p>
+            <p><strong>dataclass</strong></p>
             <pre>from dataclasses import dataclass
 
 @dataclass
@@ -97,7 +97,7 @@ class User:
     email: str = ""</pre>
             <p>这个我之前写 TestMate AI 的时候用过。Java 写同样的东西要构造函数、getter、setter、equals、hashCode。或者上 Lombok。Python 一个装饰器全搞定。</p>
 
-            <p><strong>match-case</strong>（3.10 加的）</p>
+            <p><strong>match-case</strong></p>
             <pre>match status:
     case 200:
         print("OK")
@@ -105,15 +105,15 @@ class User:
         print("Not Found")
     case _:
         print("Unknown")</pre>
-            <p>终于有 switch 了。Python 社区叫它"结构化模式匹配"，但对我这种 Java/C++ 背景的人来说就是 switch。而且比 Java 的 switch 强，能匹配结构。</p>
+            <p>Python终于有 switch 了。Python 社区叫"结构化模式匹配"，但对我这种 Java/C++ 背景的人来说就是 switch。而且比 Java 的 switch 强，能匹配结构。</p>
 
             <p><strong>f-string</strong>（3.6 加的）</p>
-            <p>上面已经提过了。之前一直用 <code>%s</code> 和 <code>.format()</code>，学了 f-string 就不想回去了。能在字符串里直接写表达式：<code>f"{len(name)}"</code>，方便。</p>
+            <p>上面已经提过了。之前一直用 <code>%s</code> 和 <code>.format()</code>，学了 f-string 就习惯了。能在字符串里直接写表达式：<code>f"{len(name)}"</code>，方便。</p>
 
-            <h3>不习惯的地方</h3>
+            <h3>对于C++转Python而言不习惯的地方</h3>
             <table>
                 <tr><th>不习惯</th><th>为什么</th></tr>
-                <tr><td>缩进就是语法</td><td>tab 和空格不能混用，混了直接报错。Java/C++ 大括号随便缩</td></tr>
+                <tr><td>缩进就是语法</td><td>tab 和空格不能混用，混了直接报错。C++用大括号无所谓</td></tr>
                 <tr><td>没有 main 函数</td><td>顶格写的代码直接执行。得手动写 <code>if __name__ == "__main__":</code></td></tr>
                 <tr><td>self 要自己写</td><td>Java 的 this 是隐式的。Python 每个方法第一个参数得写 self</td></tr>
                 <tr><td>GIL</td><td>CPU 密集任务多线程没用，得用多进程</td></tr>
@@ -121,9 +121,9 @@ class User:
             </table>
 
             <h3>三种语言</h3>
-            <p>Java 写大项目靠谱，规范、工程化强。C++ 性能猛，但内存管理心累。Python 写起来快，AI 和脚本场景确实舒服。</p>
-            <p>各有各的好。最近做 TestMate AI 用 Python + FastAPI，确实比 Spring Boot 轻量。但要是让我写个大型企业系统，还是选 Java。</p>
-            <p>接下来打算过一遍 Python 进阶：装饰器、生成器、协程。这几个之前一直半懂不懂的。</p>
+            <p>Java 写大型项目适合一些，规范、工程化强。C++ 都知道的嘛，高性能，但内存管理需要费点心思。Python 写起来快，对于现在的AI时代，写起来确实舒服。</p>
+            <p>各有各的好。最近做一些AI应用项目，正在学者着使用 Python + FastAPI，确实比 Spring Boot 轻量(感觉好学一些，🤫)。但要是让我写个大型企业系统，还是选 Java（因为比较熟）。</p>
+            <p>接下来打算一段时间内都常用Python，开发一些项目，用来展示和学习。就这样。</p>
 
         </article>
 
