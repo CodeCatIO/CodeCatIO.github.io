@@ -15,7 +15,7 @@ const translations = {
         blog_tagline: "笔记与思考",
         blog_soon: "文章正在准备中…",
         contact_title: "联系方式",
-        contact_email: "邮箱: Songwj811018@gmail.com"
+        contact_email: "邮箱: codecattdev@gmail.com"
     },
     en: {
         tagline: "A developer finding balance between AI and engineering",
@@ -31,7 +31,7 @@ const translations = {
         blog_tagline: "Notes & Thoughts",
         blog_soon: "Posts coming soon…",
         contact_title: "Contact",
-        contact_email: "Email: Songwj811018@gmail.com"
+        contact_email: "Email: codecattdev@gmail.com"
     },
     jp: {
         tagline: "AIとエンジニアリングの間でバランスを探す開発者",
@@ -47,7 +47,7 @@ const translations = {
         blog_tagline: "メモと思考",
         blog_soon: "記事は準備中…",
         contact_title: "連絡先",
-        contact_email: "メール: Songwj811018@gmail.com"
+        contact_email: "メール: codecattdev@gmail.com"
     },
     kr: {
         tagline: "AI와 엔지니어링 사이에서 균형을 찾는 개발자",
@@ -63,7 +63,7 @@ const translations = {
         blog_tagline: "노트와 생각",
         blog_soon: "글 준비 중…",
         contact_title: "연락처",
-        contact_email: "이메일: Songwj811018@gmail.com"
+        contact_email: "이메일: codecattdev@gmail.com"
     }
 };
 
