@@ -33,9 +33,9 @@
                 <a href="https://github.com/CodeCatIO" target="_blank" rel="noopener" title="GitHub">GH</a>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html">首页</a>
-                <a href="blog.html">博客</a>
-                <a href="about.html" class="active">关于</a>
+                <a href="index.html" data-i18n="nav_home">首页</a>
+                <a href="blog.html" data-i18n="nav_blog">博客</a>
+                <a href="about.html" class="active" data-i18n="nav_about">关于</a>
                 <a href="https://github.com/CodeCatIO" target="_blank" rel="noopener">GitHub</a>
             </nav>
         </aside>
@@ -43,25 +43,25 @@
         <!-- Content -->
         <main class="content">
             <div class="about-body">
-                <p class="intro">Hi, I'm CodeCat.</p>
-                <p>南京传媒学院 · 计算机科学与技术 · 2027届</p>
-                <p>
+                <p class="intro" data-i18n="about_intro">Hi, I'm CodeCat.</p>
+                <p data-i18n="about_school">南京传媒学院 · 计算机科学与技术 · 2027届</p>
+                <p data-i18n="about_desc1">
                     专注于 AI 应用开发与后端工程。
                     相信在 AI 时代，比起 Coding 能力，更应该注重 Debug 能力——
                     代码可以 AI 写，但你得能看懂、能排错、能讲清楚为什么。
                 </p>
-                <p>
-                    目前正在开发 <strong>TestMate AI</strong>——
+                <p data-i18n="about_desc2">
+                    目前正在开发 TestMate AI——
                     一个基于 LangChain 的智能测试用例生成平台。
                     输入需求文字，AI 帮你生成测试用例，还能导出 Excel。
                     部署在 Render + Vercel 上，实际跑着。
                 </p>
-                <p>
+                <p data-i18n="about_desc3">
                     也做过 Unity 3D 游戏原型（背包系统、AI 寻路、战斗系统）、
                     Cocos Creator 小游戏、Spring Boot 后端项目。
                     蓝桥杯 C++ 省二，Java 班级第三。
                 </p>
-                <p>
+                <p data-i18n="about_desc4">
                     目标：2026年12月拿到外企实习 offer。
                     理想工作有 WLB，能持续成长。
                 </p>
@@ -69,12 +69,12 @@
 
             <!-- Projects -->
             <div class="content-header" style="margin-top:2rem;">
-                <h2>项目</h2>
+                <h2 data-i18n="projects">项目</h2>
             </div>
 
             <div class="project-card">
-                <h3>TestMate AI</h3>
-                <p class="project-desc">
+                <h3 data-i18n="project_testmate">TestMate AI</h3>
+                <p class="project-desc" data-i18n="project_testmate_desc">
                     基于 LangChain + DeepSeek 的智能测试用例生成平台。
                     输入自然语言需求 → AI 生成测试用例 → 导出 Excel。
                     FastAPI 后端 + Vue 3 前端，部署在 Render + Vercel。
@@ -89,8 +89,8 @@
             </div>
 
             <div class="project-card">
-                <h3>Unity 3D 游戏 Demo</h3>
-                <p class="project-desc">
+                <h3 data-i18n="project_unity">Unity 3D 游戏 Demo</h3>
+                <p class="project-desc" data-i18n="project_unity_desc">
                     包含背包系统、AI 寻路、战斗系统与动作系统的 3D 游戏原型。
                 </p>
                 <div class="tag-list">
@@ -102,13 +102,14 @@
             <!-- Contact -->
             <div class="about-contact">
                 <ul>
+                    <li data-i18n="contact_title">联系方式</li>
                     <li>GitHub: <a href="https://github.com/CodeCatIO" target="_blank" rel="noopener">@CodeCatIO</a></li>
-                    <li>Email: <a href="mailto:codecattdev@gmail.com">codecattdev@gmail.com</a></li>
+                    <li data-i18n="contact_email">邮箱: codecattdev@gmail.com</li>
                 </ul>
             </div>
 
             <footer class="site-footer">
-                <p>© 2026 CodeCat. Built with plain HTML &amp; CSS.</p>
+                <p data-i18n="footer">© 2026 CodeCat. Built with plain HTML &amp; CSS.</p>
             </footer>
         </main>
     </div>
