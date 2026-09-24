@@ -13,6 +13,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://codecatio.github.io/blog.html">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .tag-pill.selected {
+            background: var(--accent);
+            color: #fff;
+        }
+        .tag-pill.selected:hover {
+            background: #7a4d24;
+        }
+        .post-card.hidden { display: none; }
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="lang-switch">
@@ -46,20 +62,24 @@
                 <h2 data-i18n="all_posts">全部文章</h2>
             </div>
 
-            <!-- Tag cloud -->
-            <div class="tag-cloud">
-                <a class="tag-pill" href="#">FastAPI</a>
-                <a class="tag-pill" href="#">LangChain</a>
-                <a class="tag-pill" href="#">DeepSeek</a>
-                <a class="tag-pill" href="#">JWT</a>
-                <a class="tag-pill" href="#">Vue 3</a>
-                <a class="tag-pill" href="#">Vibe Coding</a>
-                <a class="tag-pill" href="#">Python</a>
-                <a class="tag-pill" href="#">测试用例</a>
+            <!-- Tag cloud: click to filter -->
+            <div class="tag-cloud" id="tagCloud">
+                <button class="tag-pill" data-tag="Python">Python</button>
+                <button class="tag-pill" data-tag="Python3">Python3</button>
+                <button class="tag-pill" data-tag="Java">Java</button>
+                <button class="tag-pill" data-tag="C++">C++</button>
+                <button class="tag-pill" data-tag="Vibe Coding">Vibe Coding</button>
+                <button class="tag-pill" data-tag="Agentic Engineering">Agentic Engineering</button>
+                <button class="tag-pill" data-tag="AI">AI</button>
+                <button class="tag-pill" data-tag="FastAPI">FastAPI</button>
+                <button class="tag-pill" data-tag="LangChain">LangChain</button>
+                <button class="tag-pill" data-tag="DeepSeek">DeepSeek</button>
+                <button class="tag-pill" data-tag="JWT">JWT</button>
+                <button class="tag-pill" data-tag="Vue 3">Vue 3</button>
             </div>
 
-            <div class="post-list">
-                <article class="post-card">
+            <div class="post-list" id="postList">
+                <article class="post-card" data-tags="Python,Python3,Java,C++">
                     <div class="post-thumb ai-badge">
                         <span class="thumb-label">PYTHON<br>NOTES</span>
                     </div>
@@ -68,15 +88,15 @@
                         <div class="post-card-meta">2026-09-23 · 学习笔记</div>
                         <p class="post-card-excerpt">之前一直写Java和C++，Python虽然用过但没系统学过。今天过了一遍基础特性和Python3新增特性，记录认知冲击。</p>
                         <div class="tag-list">
-                            <a class="tag-pill" href="#">Python</a>
-                            <a class="tag-pill" href="#">Python3</a>
-                            <a class="tag-pill" href="#">Java</a>
-                            <a class="tag-pill" href="#">C++</a>
+                            <span class="tag-pill">Python</span>
+                            <span class="tag-pill">Python3</span>
+                            <span class="tag-pill">Java</span>
+                            <span class="tag-pill">C++</span>
                         </div>
                     </div>
                 </article>
 
-                <article class="post-card">
+                <article class="post-card" data-tags="Vibe Coding,Agentic Engineering,AI">
                     <div class="post-thumb ai-badge">
                         <span class="thumb-label">VIBE<br>CODING</span>
                     </div>
@@ -85,13 +105,15 @@
                         <div class="post-card-meta">2026-09-22 · Vibe Coding</div>
                         <p class="post-card-excerpt">网上到处说AI要替代程序员了。但AI只能帮你写小功能，不给架构和规划，成品大概率不是你要的。</p>
                         <div class="tag-list">
-                            <a class="tag-pill" href="#">Vibe Coding</a>
-                            <a class="tag-pill" href="#">Agentic Engineering</a>
-                            <a class="tag-pill" href="#">AI</a>
+                            <span class="tag-pill">Vibe Coding</span>
+                            <span class="tag-pill">Agentic Engineering</span>
+                            <span class="tag-pill">AI</span>
                         </div>
                     </div>
                 </article>
             </div>
+
+            <div class="no-results hidden" id="noResults">没有匹配的文章</div>
 
             <footer class="site-footer">
                 <p data-i18n="footer">© 2026 CodeCat. Built with plain HTML &amp; CSS.</p>
@@ -100,5 +122,47 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Tag filter: multi-select, OR logic, toggle
+        (function() {
+            var selectedTags = new Set();
+
+            document.querySelectorAll('#tagCloud .tag-pill').forEach(function(pill) {
+                pill.addEventListener('click', function() {
+                    var tag = this.dataset.tag;
+
+                    if (selectedTags.has(tag)) {
+                        selectedTags.delete(tag);
+                        this.classList.remove('selected');
+                    } else {
+                        selectedTags.add(tag);
+                        this.classList.add('selected');
+                    }
+
+                    filterPosts();
+                });
+            });
+
+            function filterPosts() {
+                var posts = document.querySelectorAll('#postList .post-card');
+                var visible = 0;
+
+                posts.forEach(function(post) {
+                    var postTags = post.dataset.tags.split(',');
+                    var match = selectedTags.size === 0 ||
+                        postTags.some(function(t) { return selectedTags.has(t); });
+
+                    if (match) {
+                        post.classList.remove('hidden');
+                        visible++;
+                    } else {
+                        post.classList.add('hidden');
+                    }
+                });
+
+                document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+            }
+        })();
+    </script>
 </body>
 </html>
