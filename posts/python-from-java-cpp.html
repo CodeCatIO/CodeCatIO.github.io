@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>从Java和C++过来，我的Python基础笔记 — CodeCat</title>
-    <meta name="description" content="一个Java/C++背景的开发者，第一次系统学习Python基础特性和Python3新增特性的学习笔记。">
+    <meta name="description" content="一个Java/C++背景的开发者，系统学了一遍Python基础，记录一些之前没注意到的点。">
     <meta name="keywords" content="Python, Python3, Java, C++, 学习笔记, 编程语言对比">
     <meta name="author" content="CodeCat">
     <link rel="canonical" href="https://codecatio.github.io/posts/python-from-java-cpp.html">
     <meta property="og:title" content="从Java和C++过来，我的Python基础笔记 — CodeCat">
-    <meta property="og:description" content="一个Java/C++背景的开发者，第一次系统学习Python的笔记。">
+    <meta property="og:description" content="一个Java/C++背景的开发者，系统学了一遍Python基础的笔记。">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://codecatio.github.io/posts/python-from-java-cpp.html">
     <link rel="stylesheet" href="../styles.css">
@@ -34,77 +34,60 @@
             <h2>从Java和C++过来，我的Python基础笔记</h2>
             <p class="post-meta">2026-09-23 · CodeCat</p>
 
-            <p>之前一直写 Java 和 C++，Python 虽然用过，但从来没系统学过。今天把基础特性和 Python3 新增特性过了一遍，记录一下让我印象深刻的点。</p>
-            <p>不是教程，是一个 Java/C++ 背景的人看 Python 时的"认知冲击"。</p>
+            <p>平时用 Python 写东西也不少了。但一直没正经坐下来学一遍基础。很多地方属于"能跑就行"的状态，遇到报错就搜一下，搜完就忘。</p>
+            <p>今天花了一天时间过了一遍。不记点什么的话明天就忘光了，所以写下来。</p>
 
-            <h3>1. 动态类型：不用声明变量类型</h3>
-            <p>Java 要写 <code>int x = 10;</code>，C++ 要写 <code>auto x = 10;</code>，Python 直接：</p>
-            <pre>x = 10          # int
-name = "Cat"    # str
-x = "hello"     # 同一个变量能换类型</pre>
-            <p>刚看到觉得离谱，同一个变量名能换类型？后来理解了：变量名只是个标签 (label)，贴在对象上。对象本身有类型，标签没有。(The variable name is just a label attached to an object. The object has a type, the label doesn't.)</p>
-            <p>代价就是运行时才检查类型，编译期不报错。所以 IDE 的类型提示 (type hint) 就很重要：</p>
+            <h3>变量类型这事</h3>
+            <p>Java 里写 <code>int x = 10</code>，编译器知道 x 是整数。Python 里直接 <code>x = 10</code>，解释器运行的时候才知道 x 是整数。</p>
+            <p>之前一直没注意：同一个变量名可以指向不同类型的对象。<code>x = 10</code> 之后 <code>x = "hello"</code> 完全没问题。因为变量名只是个标签，贴在对象上。标签本身没类型，对象才有类型。(The variable name is just a label. The object has a type, the label doesn't.)</p>
+            <p>这东西平时写代码不会出问题。但 debug 的时候如果你不知道这个，看到变量类型突然变了会一头雾水。</p>
+            <p>类型提示是 Python 3.5 加的。写法和 Java 很像：</p>
             <pre>def greet(name: str) -> str:
     return f"Hello, {name}"</pre>
-            <p>这个语法和 Java/C++ 的方法签名很像，但 Python 的类型提示是"建议"不是"强制"，不写也能跑。</p>
+            <p>但和 Java 不一样的是，这玩意不强制。你写了 <code>name: str</code>，传个 int 进去，该跑还是跑。类型提示是给人看的、给 IDE 看的，不是给解释器看的。</p>
 
-            <h3>2. 列表不是数组，是列表</h3>
-            <p>Java 的 <code>ArrayList&lt;Integer&gt;</code> 大概对应 Python 的 <code>list</code>，但 Python 的 list 更随意：</p>
-            <pre>items = [1, "hello", 3.14, None, [1, 2]]</pre>
-            <p>一个列表里什么类型都能放。在 Java 里这么干编译器直接给你拍死。(In Java, the compiler would reject this immediately.)</p>
-            <p>切片 (slicing) 是 Python 的杀手特性：</p>
+            <h3>列表和切片</h3>
+            <p>Python 的 list 什么都能往里塞。<code>[1, "hello", 3.14, None]</code> 完全合法。Java 的 ArrayList 要指定泛型，类型不对编译器直接报错。</p>
+            <p>切片是今天学到最舒服的东西。</p>
             <pre>nums = [0, 1, 2, 3, 4, 5]
 nums[1:4]    # [1, 2, 3] 左闭右开
 nums[:3]     # [0, 1, 2]
-nums[-2:]   # [4, 5] 负数从末尾数
+nums[-2:]   # [4, 5] 倒着数
 nums[::-1]  # [5, 4, 3, 2, 1, 0] 反转</pre>
-            <p>Java 要反转数组得 <code>Collections.reverse()</code>，Python 一个 <code>[::-1]</code> 搞定。第一次看到觉得有点离谱。</p>
+            <p>Java 反转列表得 <code>Collections.reverse()</code>。Python 一个 <code>[::-1]</code> 完事。第一次看到的时候愣了一下，这也行？</p>
+            <p>负数索引也是。<code>nums[-1]</code> 取最后一个元素。Java 里你得写 <code>nums.get(nums.size() - 1)</code>。对比下来 Python 确实顺手。</p>
 
-            <h3>3. 字典：比 Java 的 HashMap 好用太多</h3>
+            <h3>字典比 HashMap 好用</h3>
             <pre>person = {"name": "Cat", "age": 22}
-person["school"] = "南京传媒学院"   # 直接加
+person["school"] = "南京传媒学院"
+
 for key, value in person.items():
     print(f"{key}: {value}")</pre>
-            <p>Java 写 Map 要 <code>Map.Entry&lt;K, V&gt;</code>，Python 直接 <code>.items()</code> 解包。f-string 也比 Java 的 <code>String.format()</code> 直观太多。</p>
+            <p>Java 遍历 Map 要 <code>entrySet()</code>、<code>Entry&lt;K, V&gt;</code>，写起来啰嗦。Python 直接 <code>.items()</code> 解包，干净。</p>
+            <p>f-string 也舒服。<code>f"Hello, {name}!"</code> 比 Java 的 <code>String.format("Hello, %s!", name)</code> 好读多了。以前一直用 <code>%s</code> 的方式格式化，学了 f-string 就不想回去了。</p>
 
-            <h3>4. 函数是一等公民</h3>
-            <p>Python 里函数可以当参数传、当返回值、赋值给变量。Java 要用函数式接口 + Lambda，C++ 要用函数指针或 <code>std::function</code>。</p>
+            <h3>函数可以传来传去</h3>
+            <p>Python 里函数是一等公民。可以当参数传，可以当返回值，可以赋值给变量。</p>
             <pre>def apply(func, x):
     return func(x)
 
 apply(len, "hello")   # 5
 apply(str.upper, "a") # 'A'</pre>
-            <p>Lambda 语法也简洁：</p>
-            <pre>nums = [3, 1, 4, 1, 5]
-nums.sort(key=lambda x: -x)  # 降序排序</pre>
-            <p>Java 等价写法：<code>nums.sort((a, b) -> b - a);</code>，差不多，但 Python 的 lambda 能写多行（虽然不建议）。</p>
+            <p>Java 要这么干得用函数式接口加 Lambda。C++ 得用函数指针或者 <code>std::function</code>。Python 直接传函数名就行。</p>
+            <p>Lambda 也简洁：</p>
+            <pre>nums.sort(key=lambda x: -x)  # 降序</pre>
+            <p>不过 Python 的 lambda 只能写一行表达式，不能写多行。想写复杂逻辑还是老老实实定义函数。</p>
 
-            <h3>5. Python3 让我眼前一亮的特性</h3>
+            <h3>Python3 加的那些东西</h3>
+            <p>之前用 Python 一直是"够用就行"，很多 3.x 加的特性压根没用过。今天过了一遍才发现，有些东西确实好用。</p>
 
-            <h4>海象运算符 := (Python 3.8)</h4>
-            <p>赋值 + 判断一行搞定：</p>
-            <pre># 以前
-line = input()
-while line != "quit":
-    print(line)
-    line = input()
-
-# 用海象运算符
-while (line := input()) != "quit":
+            <p><strong>海象运算符 :=</strong>（3.8 加的）</p>
+            <p>赋值加判断一行搞定：</p>
+            <pre>while (line := input()) != "quit":
     print(line)</pre>
-            <p>像 C 的 <code>if ((c = getchar()) != EOF)</code>，但 Python 之前一直不支持，3.8 才加。</p>
+            <p>以前要写三行：先赋值，再判断，循环体里再赋值。现在一行搞定。有点像 C 语言的 <code>while ((c = getchar()) != EOF)</code>，Python 3.8 才支持。</p>
 
-            <h4>类型提示 (Python 3.5+)</h4>
-            <pre>from typing import List, Optional
-
-def find_user(users: List[dict], name: str) -> Optional[dict]:
-    for u in users:
-        if u["name"] == name:
-            return u
-    return None</pre>
-            <p>作为 Java/C++ 背景的人，看到这个很亲切。虽然不强制，但配上 mypy 做静态检查，体验接近编译型语言。(Feels close to compiled languages with mypy static checking.)</p>
-
-            <h4>dataclass (Python 3.7)</h4>
+            <p><strong>dataclass</strong>（3.7 加的）</p>
             <pre>from dataclasses import dataclass
 
 @dataclass
@@ -112,19 +95,9 @@ class User:
     name: str
     age: int
     email: str = ""</pre>
-            <p>Java 要写构造函数、getter、setter、equals、hashCode（或者用 Lombok）。Python 一个装饰器全生成。这个体验差距太大了。</p>
+            <p>这个我之前写 TestMate AI 的时候用过。Java 写同样的东西要构造函数、getter、setter、equals、hashCode。或者上 Lombok。Python 一个装饰器全搞定。</p>
 
-            <h4>f-string (Python 3.6)</h4>
-            <pre>name = "CodeCat"
-print(f"Hello, {name}!")
-# 多行
-print(f"""
-Name: {name}
-Length: {len(name)}
-""")</pre>
-            <p>比 Java 的 <code>String.format("Hello, %s!", name)</code> 和 <code>"Hello, " + name + "!"</code> 都好太多。</p>
-
-            <h4>match-case (Python 3.10)</h4>
+            <p><strong>match-case</strong>（3.10 加的）</p>
             <pre>match status:
     case 200:
         print("OK")
@@ -132,27 +105,25 @@ Length: {len(name)}
         print("Not Found")
     case _:
         print("Unknown")</pre>
-            <p>终于有 switch-case 了！虽然 Python 社区叫它"结构化模式匹配" (structural pattern matching)，但对我这种从 Java/C++ 过来的人就是 switch。</p>
+            <p>终于有 switch 了。Python 社区叫它"结构化模式匹配"，但对我这种 Java/C++ 背景的人来说就是 switch。而且比 Java 的 switch 强，能匹配结构。</p>
 
-            <h3>6. 不习惯的地方</h3>
+            <p><strong>f-string</strong>（3.6 加的）</p>
+            <p>上面已经提过了。之前一直用 <code>%s</code> 和 <code>.format()</code>，学了 f-string 就不想回去了。能在字符串里直接写表达式：<code>f"{len(name)}"</code>，方便。</p>
+
+            <h3>不习惯的地方</h3>
             <table>
-                <tr><th>不习惯的点</th><th>原因</th></tr>
-                <tr><td>缩进即语法</td><td>tab 和空格混用会炸，Java/C++ 大括号随便缩</td></tr>
-                <tr><td>没有 main 函数</td><td>顶格写就执行，得手动写 <code>if __name__ == "__main__":</code></td></tr>
-                <tr><td>self 要显式写</td><td>Java 的 this 是隐式的，Python 每个方法第一个参数是 self</td></tr>
-                <tr><td>多线程有 GIL</td><td>CPU 密集型多线程没用，得用多进程</td></tr>
-                <tr><td>没有接口</td><td>用抽象基类 (ABC) 模拟，不如 Java interface 干净</td></tr>
+                <tr><th>不习惯</th><th>为什么</th></tr>
+                <tr><td>缩进就是语法</td><td>tab 和空格不能混用，混了直接报错。Java/C++ 大括号随便缩</td></tr>
+                <tr><td>没有 main 函数</td><td>顶格写的代码直接执行。得手动写 <code>if __name__ == "__main__":</code></td></tr>
+                <tr><td>self 要自己写</td><td>Java 的 this 是隐式的。Python 每个方法第一个参数得写 self</td></tr>
+                <tr><td>GIL</td><td>CPU 密集任务多线程没用，得用多进程</td></tr>
+                <tr><td>没有 interface</td><td>用抽象基类模拟，不如 Java interface 干净</td></tr>
             </table>
 
-            <h3>总结：三种语言的定位</h3>
-            <table>
-                <tr><th>语言</th><th>擅长</th><th>我的心路</th></tr>
-                <tr><td>Java</td><td>企业级后端</td><td>规范、严谨，但啰嗦</td></tr>
-                <tr><td>C++</td><td>系统/游戏/性能</td><td>强大但内存管理心累</td></tr>
-                <tr><td>Python</td><td>AI/脚本/快速开发</td><td>写着舒服，但大型项目维护心里没底</td></tr>
-            </table>
-            <p>各有各的好。Python 写脚本和 AI 应用确实快，FastAPI 写后端也比 Spring Boot 轻量。但 Java 的工程化能力还是强，大项目还是 Java 靠谱。</p>
-            <p>接下来要把 Python 进阶语法（装饰器、生成器、协程）也过一遍，然后深挖 FastAPI 的异步原理。</p>
+            <h3>三种语言</h3>
+            <p>Java 写大项目靠谱，规范、工程化强。C++ 性能猛，但内存管理心累。Python 写起来快，AI 和脚本场景确实舒服。</p>
+            <p>各有各的好。最近做 TestMate AI 用 Python + FastAPI，确实比 Spring Boot 轻量。但要是让我写个大型企业系统，还是选 Java。</p>
+            <p>接下来打算过一遍 Python 进阶：装饰器、生成器、协程。这几个之前一直半懂不懂的。</p>
 
         </article>
 
