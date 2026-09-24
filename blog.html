@@ -12,14 +12,22 @@
     <meta property="og:description" content="FastAPI、LangChain、DeepSeek、Vibe Coding实践笔记。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://codecatio.github.io/blog.html">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <style>
+        #tagCloud .tag-pill {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
         .tag-pill.selected {
-            background: var(--accent);
-            color: #fff;
+            background: var(--accent) !important;
+            color: #fff !important;
         }
         .tag-pill.selected:hover {
-            background: #7a4d24;
+            background: #7a4d24 !important;
         }
         .post-card.hidden { display: none; }
         .no-results {
@@ -121,7 +129,7 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
     <script>
         // Tag filter: multi-select, OR logic, toggle
         (function() {
