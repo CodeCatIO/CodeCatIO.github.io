@@ -3,89 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在AI时代，使用Vibe Coding的代码，别人怎么看？ — CodeCat</title>
-    <meta name="description" content="AI辅助写代码的时代，比起Coding能力，更应该注重Debug能力。TestMate AI项目复盘。">
-    <meta name="keywords" content="Vibe Coding, AI编程, TestMate AI, FastAPI, LangChain, DeepSeek, JWT, 测试用例">
+    <title>AI替代不了程序员 — CodeCat</title>
+    <meta name="description" content="在AI时代，AI替代不了程序员。Vibe Coding、Agentic Engineering，到底什么能替代什么？">
+    <meta name="keywords" content="Vibe Coding, Agentic Engineering, AI编程, 程序员, Andrej Karpathy">
     <meta name="author" content="CodeCat">
     <link rel="canonical" href="https://codecatio.github.io/posts/testmate-ai-retrospect.html">
-    <meta property="og:title" content="在AI时代，使用Vibe Coding的代码，别人怎么看？">
-    <meta property="og:description" content="AI辅助写代码的时代，比起Coding能力，更应该注重Debug能力。TestMate AI项目复盘。">
+    <meta property="og:title" content="AI替代不了程序员 — CodeCat">
+    <meta property="og:description" content="Vibe Coding、Agentic Engineering，AI到底能替代什么？">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://codecatio.github.io/posts/testmate-ai-retrospect.html">
-    <meta property="og:site_name" content="CodeCat">
     <link rel="stylesheet" href="../styles.css">
-    <style>
-        .post-meta {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
-        .post-body h3 {
-            font-size: 1.1rem;
-            font-weight: normal;
-            margin-top: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .post-body p {
-            margin-bottom: 1rem;
-        }
-        .post-body pre {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            padding: 1rem 1.25rem;
-            overflow-x: auto;
-            margin: 1rem 0 1.5rem;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            font-family: 'Courier New', monospace;
-        }
-        .post-body code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            background: var(--bg-alt);
-            padding: 0.1rem 0.35rem;
-        }
-        .post-body ul, .post-body ol {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-        .post-body li {
-            margin-bottom: 0.4rem;
-        }
-        .post-body blockquote {
-            border-left: 3px solid var(--border);
-            padding-left: 1rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin: 1rem 0;
-        }
-        .post-body table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0 1.5rem;
-            font-size: 0.9rem;
-        }
-        .post-body th, .post-body td {
-            border: 1px solid var(--border);
-            padding: 0.5rem 0.75rem;
-            text-align: left;
-        }
-        .post-body th {
-            background: var(--bg-alt);
-            font-weight: normal;
-        }
-        .arch-diagram {
-            width: 100%;
-            margin: 1.5rem 0;
-        }
-        .back-link {
-            margin-top: 3rem;
-            display: inline-block;
-            color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border);
-        }
-    </style>
 </head>
 <body>
     <nav class="lang-switch">
@@ -104,162 +31,41 @@
 
     <main class="post-detail">
         <article class="post-body">
-            <h2>在AI时代，使用Vibe Coding的代码，HR怎么看？</h2>
+            <h2>AI替代不了程序员</h2>
             <p class="post-meta">2026-09-22 · CodeCat</p>
 
-            <p>说实话，我并不清楚HR的真实看法，但对我个人而言，我认为在AI时代我们比起Coding能力，更应该注重Debug能力。</p>
-            <p>老板不在乎谁敲的键盘，只在乎你懂不懂这些代码。所以我写了这篇博客，比起给别人看，更多的是让自己接受Vibe Coding</p>
+            <p>最近看了几个大佬的视频，有感而发。</p>
+            <p>现在网上到处都在说AI要替代程序员了。代码写得又快又好，普通人说几句话就能做出一个应用，还要程序员干嘛？</p>
+            <p>说实话，作为计算机专业的学生，我对AI的使用程度自认为还算高的。日常写代码基本都开着AI辅助。但我发现一个事：AI只能帮我写小功能、小工具。如果你不给它合理的架构和规划，让AI从头到尾自己搞，成品大概率和你想要的东西不是一回事。</p>
 
-            <h3>我用AI写的项目是什么</h3>
-            <p>TestMateAI，这个项目是我和AI共同完成的，是用来生成测试用例的（PS：手写测试用例太麻烦，豆包生成的有时候比较抽象不好复制。）</p>
-            <p>所以我写好PRD、提示词和系统设计，然后让AI在我搭建好的框架下填充。最后效果就是：输入一段需求文字，AI 帮你生成功能测试用例，还能导出 Excel。</p><p>比如你输入"用户登录功能，支持账号密码登录"，它会输出 10 条测试用例——正常登录、密码错误、账号为空、SQL 注入……覆盖正常和异常场景。</p>
+            <h3>Vibe Coding是什么</h3>
+            <p>非专业人士用口语表达需求，AI全程编码。这种模式叫 Vibe Coding。Andrej Karpathy 提出来的。</p>
+            <p>听起来很美好。你说一句"帮我做个博客"，AI就给你写出来了。但出来的东西，功能可能对，架构可能乱，细节大概率不到位。做玩具可以，做产品不行。</p>
 
-            <h3>技术栈</h3>
-            <table>
-                <tr><th>技术</th><th>作用</th></tr>
-                <tr><td>FastAPI</td><td>后端框架，选它是因为快、自带 API 文档</td></tr>
-                <tr><td>LangChain + DeepSeek</td><td>AI 调用层，DeepSeek 便宜效果好</td></tr>
-                <tr><td>Vue 3 + ElementPlus</td><td>前端，表格组件开箱即用</td></tr>
-                <tr><td>SQLAlchemy</td><td>ORM，开发用 SQLite，生产用 MySQL</td></tr>
-                <tr><td>openpyxl</td><td>生成 Excel 文件</td></tr>
-            </table>
+            <h3>业内人士怎么用AI</h3>
+            <p>真正业内的人用AI辅助编码，一般叫 Agentic Engineering。虽然平时我们也习惯说 Vibe Coding，但严格来说是两回事。</p>
+            <p>流程大概是这样：人负责提需求、定方案、搭架构、拆任务。Agent负责执行。最后人来验收。</p>
+            <p>流程靠人把控，质量靠人把关，验收靠人来定。AI是工具，不是替代品。(AI is a tool, not a replacement.)</p>
 
-            <h3>架构</h3>
-            <p>画了个简单的架构图：</p>
-
-            <svg class="arch-diagram" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg">
-                <!-- Frontend box -->
-                <rect x="150" y="20" width="300" height="80" rx="4" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1.5"/>
-                <text x="300" y="45" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#2c2a26">Frontend (Vue 3)</text>
-                <text x="300" y="68" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#6b655b">Home · Generate · Result · History</text>
-                <text x="300" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b5a2b">deployed on Vercel</text>
-
-                <!-- Arrow down -->
-                <line x1="300" y1="100" x2="300" y2="140" stroke="#d9d3c5" stroke-width="1.5"/>
-                <text x="320" y="125" font-family="Georgia, serif" font-size="10" fill="#6b655b">HTTP</text>
-
-                <!-- Backend box -->
-                <rect x="100" y="140" width="400" height="240" rx="4" fill="none" stroke="#d9d3c5" stroke-width="1.5" stroke-dasharray="4 2"/>
-                <text x="300" y="160" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#6b655b">Backend (FastAPI)</text>
-
-                <!-- API layer -->
-                <rect x="130" y="175" width="340" height="30" rx="3" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1"/>
-                <text x="300" y="195" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#2c2a26">api/ — auth.py · generate.py · export.py · history.py</text>
-
-                <!-- Arrow down inside backend -->
-                <line x1="300" y1="205" x2="300" y2="220" stroke="#d9d3c5" stroke-width="1"/>
-
-                <!-- Services -->
-                <rect x="130" y="220" width="155" height="30" rx="3" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1"/>
-                <text x="207" y="240" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#2c2a26">ai_service.py</text>
-                <text x="207" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#6b655b">LangChain → DeepSeek</text>
-
-                <rect x="315" y="220" width="155" height="30" rx="3" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1"/>
-                <text x="392" y="240" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#2c2a26">utils/auth.py</text>
-                <text x="392" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#6b655b">bcrypt + JWT</text>
-
-                <!-- Arrow down -->
-                <line x1="300" y1="265" x2="300" y2="280" stroke="#d9d3c5" stroke-width="1"/>
-
-                <!-- Models -->
-                <rect x="130" y="280" width="155" height="30" rx="3" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1"/>
-                <text x="207" y="300" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#2c2a26">models/user.py</text>
-
-                <rect x="315" y="280" width="155" height="30" rx="3" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1"/>
-                <text x="392" y="300" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#2c2a26">models/case_record.py</text>
-
-                <!-- Config -->
-                <rect x="200" y="335" width="200" height="25" rx="3" fill="none" stroke="#d9d3c5" stroke-width="1" stroke-dasharray="3 2"/>
-                <text x="300" y="352" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#6b655b">config/settings.py → .env</text>
-
-                <!-- Arrow down to DB -->
-                <line x1="300" y1="380" x2="300" y2="410" stroke="#d9d3c5" stroke-width="1.5"/>
-
-                <!-- Database -->
-                <rect x="150" y="410" width="300" height="55" rx="4" fill="#f3efe7" stroke="#d9d3c5" stroke-width="1.5"/>
-                <text x="300" y="432" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#2c2a26">Database</text>
-                <text x="300" y="450" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#6b655b">SQLite (dev) · MySQL (prod on Render)</text>
-
-                <!-- Deploy note -->
-                <text x="300" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#8b5a2b" font-style="italic">backend deployed on Render</text>
-            </svg>
-
-            <h3>讲几个我觉得值得说的点</h3>
-
-            <h3>1. DeepSeek 怎么接的</h3>
-            <p>核心就改了一个地方——<code>base_url</code>：</p>
-            <pre>llm = ChatOpenAI(
-    api_key=DEEPSEEK_API_KEY, # 其实还有这里（换上自己的KEY别上传<可以用.ignore 忽略本地写KEY的文件>）
-    base_url="https://api.deepseek.com",  # 就改这里
-    model="deepseek-chat",
-    temperature=0.3
-)</pre>
-            <p>DeepSeek 兼容 OpenAI 的 API 格式，所以 LangChain 的 <code>ChatOpenAI</code> 不用改任何代码，换个地址就行。温度设 0.3，因为我要的是稳定的 JSON 输出，不是创意写作。</p>
-
-            <h3>2. AI 返回不是每次都靠谱</h3>
-            <p>这是实际跑起来才发现的问题。AI 有时候会在 JSON 前面加一句"好的，以下是你需要的测试用例："，直接 <code>json.loads()</code> 就炸了。</p>
-            <p>所以我加了重试：</p>
-            <pre>max_retries = 2
-for attempt in range(max_retries):
-    try:
-        cases = generate_cases(request.requirement)
-        return {"code": 200, "data": cases}
-    except json.JSONDecodeError:
-        # AI 返回了但格式不对
-        if attempt < max_retries - 1:
-            time.sleep(2)
-            continue
-        return {"code": 500, "message": "AI返回格式错误"}
-    except (ConnectionError, TimeoutError, OSError):
-        # 网络炸了
-        if attempt < max_retries - 1:
-            time.sleep(2)
-            continue
-        return {"code": 503, "message": "AI服务不可用"}</pre>
-            <p>重试一次不行就告诉用户"服务不可用"。500 是 AI 的锅，503 是网络的锅，状态码要分开。</p>
-            <blockquote>后来我想了想，其实应该先 try 用正则把 JSON 部分提取出来再 parse，这样成功率会更高。下一步可以优化。</blockquote>
-
-            <h3>3. 密码存储</h3>
-            <p>注册时密码用 bcrypt 加盐哈希，存的是哈希值不是明文：</p>
-            <pre>hashed = bcrypt.hashpw(
-    password.encode('utf-8'),
-    bcrypt.gensalt()  # 随机盐
-).decode('utf-8')</pre>
-            <p>登录时不是"解密"，是拿用户输入的密码再做一次哈希，比一比结果一不一样。哈希是单向的，反推不了原密码。</p>
-            <p>然后发一个 JWT token，7 天有效。之后用户每次请求在 Header 里带上 <code>Authorization: Bearer &lt;token&gt;</code>，后端 decode 一下就知道是谁了。</p>
-
-            <h3>4. 数据隔离</h3>
-            <p>查历史记录的时候始终带 <code>user_id</code> 过滤，用户 A 看不到用户 B 的东西：</p>
-            <pre>records = db.query(CaseRecord)
-    .filter(CaseRecord.user_id == current_user.id)
-    .order_by(CaseRecord.id.desc())
-    .offset(offset)
-    .limit(size)
-    .all()</pre>
-            <p>有人想访问别人的记录？直接 403 打回去。</p>
-
-            <h3>5. Excel 导出踩的坑</h3>
-            <p>中文文件名在 HTTP 头里会乱码。HTTP 头只允许 ASCII，中文得用 RFC 5987 编码：</p>
-            <pre>headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(filename)}"}</pre>
-            <p>这个坑踩了好久才找到原因……</p>
-
-            <h3>部署</h3>
+            <h3>还有更多玩法</h3>
+            <p>我搜了一下，AI和人工合作的方式其实挺多的：</p>
             <ul>
-                <li>后端扔在 Render 上，MySQL 做生产数据库</li>
-                <li>前端扔在 Vercel 上，自动构建</li>
-                <li>CORS 在 FastAPI 里配了 Vercel 的域名</li>
-                <li>API Key、JWT 密钥这些全走环境变量，不硬编码</li>
+                <li><strong>SDD</strong> — 规范驱动开发，先定规范再让AI写</li>
+                <li><strong>BMAD</strong> — 敏捷AI开发，迭代式协作</li>
+                <li><strong>Ralph Wiggum Loop</strong> — 一种循环式AI协作</li>
+                <li><strong>Harness Engineering</strong> — 驾驭工程，人驾驭AI</li>
             </ul>
+            <p>这些方式都有一个共同点：需要丰富的专业经验才能用好。你得知道什么是好架构，什么是不好的。你得能看出AI写的代码哪里有问题。这些能力，不是AI给你的，是你自己积累的。</p>
 
-            <h3>所以 AI 写了代码，我学到了什么？</h3>
-            <p>老实说大部分代码确实不是我一个字一个字敲的。但写这篇博客的时候，我完全可以靠自己回答这些问题：</p>
-            <ul>
-                <li>为什么用 DeepSeek 不用 OpenAI？—— 便宜，API 兼容</li>
-                <li>为什么重试 2 次不是 3 次？—— 够了，再多就是浪费时间</li>
-                <li>为什么用 JWT 不用 Session？—— 前后端分离，无状态方便</li>
-                <li>为什么用内存流不用临时文件？—— 云上没那么多磁盘给你玩</li>
-            </ul>
-            <p>或者其他项目的问题，我觉得在这个时代，我们应该是利用AI加速自己成长，简单重复的任务直接AI接管，我们可以学更多东西和技术。</p>
+            <h3>所以AI替代不了程序员</h3>
+            <p>网上传播焦虑的，大概两类人。一类是机构，想卖课的。一类是大学四年啥也没学的，出来就说AI替代了自己的岗位。</p>
+            <p>我一直相信一句话：</p>
+            <blockquote style="border-left:3px solid var(--accent); padding-left:1rem; margin:1.5rem 0; color:var(--text); font-style:italic;">
+                "拼命累积的东西，绝对不会背叛自己。"
+            </blockquote>
+            <p>专业基本功很重要。数据结构、操作系统、网络、算法，这些东西AI能帮你写，但帮不了你懂。</p>
+            <p>AI目前并非万能。它能加速你的开发，但不能替代你的判断。</p>
+            <p>所以与其焦虑被替代，不如想想怎么把AI用好，把自己的基本功练扎实。</p>
 
         </article>
 
